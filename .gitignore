@@ -1,0 +1,11 @@
+# Ignore Visual Studio temporary files, build results, and cache directories
+.vs/
+bin/
+obj/
+# Ignore user-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+# Ignore Visual Studio Code settings
+.vscode/
