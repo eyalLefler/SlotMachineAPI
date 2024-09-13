@@ -1,0 +1,6 @@
+@BlazesoftMachine_HostAddress = http://localhost:5034
+
+GET {{BlazesoftMachine_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
