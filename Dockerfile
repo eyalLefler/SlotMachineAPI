@@ -1,24 +1,32 @@
-# Constract stage
-FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
-WORKDIR /app
+# Build stage
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+WORKDIR /src
 
-#Restore packages
-COPY *.csproj ./
-RUN dotnet restore
+# Copy the .csproj file and restore dependencies
+COPY BlazesoftMachine/BlazesoftMachine.csproj BlazesoftMachine/
+RUN ls -la
+RUN dotnet restore BlazesoftMachine/BlazesoftMachine.csproj
 
-# Copy all proj files and run the build
-COPY . ./
-RUN dotnet publish -c Release -o out
+# Copy the rest of the source code
+COPY BlazesoftMachine/. BlazesoftMachine/
+RUN ls -la
 
-# Runing stage
-FROM mcr.microsoft.com/dotnet/aspnet:6.0
+# Build the project
+WORKDIR /src/BlazesoftMachine
+RUN dotnet publish -c Release -o /app/out
+
+# Runtime stage
+FROM mcr.microsoft.com/dotnet/aspnet:8.0
 WORKDIR /app
 COPY --from=build /app/out .
 
-# Define enviroment variables 
+# Define environment variables 
 ENV ASPNETCORE_URLS=http://+:80
 ENV ASPNETCORE_ENVIRONMENT=Development
 
 EXPOSE 80
 
-ENTRYPOINT ["dotnet", "BlazesoftMachine.exe"]
+ENTRYPOINT ["dotnet", "BlazesoftMachine.dll"]
+
+
+

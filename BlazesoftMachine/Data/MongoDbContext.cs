@@ -9,8 +9,11 @@ namespace BlazesoftMachine.Data
     {
         private readonly IMongoDatabase _database;
 
-        public MongoDbContext(string connectionString, string databaseName)
+        public MongoDbContext()
         {
+            var connectionString = Environment.GetEnvironmentVariable("MONGO_CONNECTION_STRING") ?? "mongodb://localhost:27017";
+            var databaseName = "SlotMachineDB";
+
             var client = new MongoClient(connectionString);
             _database = client.GetDatabase(databaseName);
         }

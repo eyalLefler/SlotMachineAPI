@@ -11,7 +11,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 
-builder.Services.AddSingleton<MongoDbContext>(sp => new MongoDbContext("Connection String to DB", "your-database-name"));
+builder.Services.AddSingleton<MongoDbContext>();
 
 // Register SlotMachineService as Scoped (new instance per request)
 builder.Services.AddScoped<SlotMachineService>();
