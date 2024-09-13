@@ -9,3 +9,4 @@ obj/
 *.sln.docstates
 # Ignore Visual Studio Code settings
 .vscode/
+/data/db
