@@ -37,6 +37,13 @@ This command will:
 - Pull the MongoDB Docker image
 - Run both containers, linking them together as defined in the `docker-compose.yml` file
 
+Use Docker Compose to stop and clean everything including the Docker volumes and with them the MongoDB itself.
+
+```bash
+docker-compose down -v
+```
+
+
 ### Access the Application
 
 Once the application is running, it will be accessible at:

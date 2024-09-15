@@ -3,18 +3,15 @@ using BlazesoftMachine.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 
+// Add services to the container
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-
 builder.Services.AddSingleton<MongoDbContext>();
-
-// Register SlotMachineService as Scoped (new instance per request)
 builder.Services.AddScoped<SlotMachineService>();
+builder.Services.AddScoped<PlayerBalanceService>();
 
 
 var app = builder.Build();

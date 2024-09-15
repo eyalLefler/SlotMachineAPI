@@ -10,10 +10,7 @@ namespace BlazesoftMachine.Controllers
     {
         private readonly SlotMachineService _slotMachineService;
 
-        public SlotMachineController(SlotMachineService slotMachineService)
-        {
-            _slotMachineService = slotMachineService;
-        }
+        public SlotMachineController(SlotMachineService slotMachineService) => _slotMachineService = slotMachineService;
 
         [HttpPost("spin")]
         public async Task<IActionResult> Spin([FromBody] SpinRequest request)
@@ -29,19 +26,19 @@ namespace BlazesoftMachine.Controllers
             }
         }
 
-        [HttpPost("balance/update")]
-        public async Task<IActionResult> UpdateBalance([FromBody] UpdateBalanceRequest request)
+        [HttpPost("ConfigSlotMachineMatrixSize")]
+        public async Task<IActionResult> ConfigSlotMachineMatrixSize([FromBody] ConfigSlotMachineMatrixSizeRequest request)
         {
             try
             {
-                await _slotMachineService.UpdateBalanceAsync(request.PlayerId, request.Amount);
+                await _slotMachineService.ConfigSlotMachineMatrixSize(request.MatrixHeight, request.MatrixWidth);
                 return Ok();
             }
             catch (Exception ex)
             {
                 return BadRequest(new { Message = ex.Message });
             }
-        }
+        }        
 
     }
 }
