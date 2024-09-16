@@ -9,7 +9,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddSingleton<MongoDbContext>();
+builder.Services.AddSingleton<IMongoDbContext, MongoDbContext>();
+builder.Services.AddScoped<IMatrixService, MatrixService>();
 builder.Services.AddScoped<SlotMachineService>();
 builder.Services.AddScoped<PlayerBalanceService>();
 
